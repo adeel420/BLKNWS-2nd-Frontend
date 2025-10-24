@@ -8,7 +8,7 @@ import { Play } from "lucide-react";
 const TourRow = ({ title, venue, date }) => {
   return (
     <section className={`w-full mt-6  text-center`} aria-label={title}>
-      <h2 className="mx-auto max-w-4xl text-3xl md:text-5xl lg:text-5xl font-normal uppercase tracking-wide">
+      <h2 className="mx-auto max-w-4xl text-xl md:text-5xl lg:text-5xl font-normal uppercase tracking-wide">
         {title}
       </h2>
 

@@ -77,7 +77,7 @@ const Credits = () => {
           className="font-normal text-sm sm:text-base md:text-lg"
           style={{ fontFamily: "VTC Du Bois, sans-serif" }}
         >
-          Mobolaji Dawodu, IB Kamara, Grace Wales Bonner,
+          Mobolaji Dawodu, IB Kamara, Grace Wales Bonner
         </p>
       </div>
 
@@ -122,7 +122,7 @@ const Credits = () => {
           className="font-normal text-sm sm:text-base md:text-lg"
           style={{ fontFamily: "VTC Du Bois, sans-serif" }}
         >
-          James Shani, Anikah Mclaren, David Linde, Steven Soderbergh,
+          James Shani, Anikah Mclaren, David Linde, Steven Soderbergh
         </p>
       </div>
 
@@ -137,7 +137,7 @@ const Credits = () => {
           className="font-normal text-sm sm:text-base md:text-lg"
           style={{ fontFamily: "VTC Du Bois, sans-serif" }}
         >
-          Onye Anyanwu, Kahlil Joseph, Amy Greenleaf, Nic Gonda,
+          Onye Anyanwu, Kahlil Joseph, Amy Greenleaf, Nic Gonda
         </p>
       </div>
 
@@ -153,7 +153,7 @@ const Credits = () => {
           style={{ fontFamily: "VTC Du Bois, sans-serif" }}
         >
           Kahlil Joseph, Saidiya Hartman, Irvin Hunt, Madebo Fatunde, Kristen
-          Adele Calhoun,
+          Adele Calhoun
         </p>
         <p
           className="font-normal text-sm sm:text-base md:text-lg"
