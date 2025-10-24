@@ -313,7 +313,7 @@ const Popup = ({ setPopup }) => {
 
                 {/* Mobile close button */}
                 <button
-                  className="absolute top-[-10px] right-12 z-[50] block md:hidden text-2xl font-bold text-gray-700"
+                  className="absolute top-[-4px] right-10 z-[50] block md:hidden text-2xl font-bold text-gray-700"
                   onClick={handleCloseClick}
                 >
                   ×
