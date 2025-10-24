@@ -526,3 +526,6 @@ body {
     margin-top: -15px !important;
   }
 }
+.option-center {
+  text-align: center;
+}

@@ -7,7 +7,7 @@ import { Play } from "lucide-react";
 // Reusable TourRow component
 const TourRow = ({ title, venue, date }) => {
   return (
-    <section className={`w-full mt-3  text-center`} aria-label={title}>
+    <section className={`w-full mt-6  text-center`} aria-label={title}>
       <h2 className="mx-auto max-w-4xl text-3xl md:text-5xl lg:text-5xl font-normal uppercase tracking-wide">
         {title}
       </h2>
@@ -158,20 +158,20 @@ const Watch = () => {
         {/* Custom Select Box */}
         <div className="relative inline-block w-full max-w-[320px] mt-4 sm:mt-6">
           <select
-            className="w-full border border-white bg-transparent text-white text-center px-6 py-3 sm:py-3.5 md:py-4 rounded-md appearance-none cursor-pointer hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40 transition"
+            className="w-full border border-white bg-transparent text-white text-center px-6 py-3 sm:py-3.5 md:py-4 rounded-md appearance-none cursor-pointer hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40 transition option-center"
             onClick={() => setIsOpen(!isOpen)}
             onBlur={() => setIsOpen(false)}
           >
-            <option value="" className="bg-black text-white">
+            <option value="" className="bg-black text-white option-center">
               PRE-ORDER COMING SOON
             </option>
-            <option value="" className="bg-black text-white">
+            <option value="" className="bg-black text-white option-center">
               AVAILABLE SOON
             </option>
-            <option value="" className="bg-black text-white">
+            <option value="" className="bg-black text-white option-center">
               JOIN WAITLIST
             </option>
-            <option value="" className="bg-black text-white">
+            <option value="" className="bg-black text-white option-center">
               EXCLUSIVE ACCESS
             </option>
           </select>
