@@ -66,45 +66,43 @@ const Home = () => {
     <div className="bg-black">
       <div className="w-[95%] md:w-[100%]">
         {/* ======================= HERO SECTION ======================= */}
-        <div
-          className="bg-[black]"
-          style={{
-            zIndex: "-111111111111111111111111111111111111111111111111",
-          }}
-          onClick={handleStartAudio}
-        >
+        <div className="bg-[black] relative" onClick={handleStartAudio}>
           <div className="relative w-full h-[100vh] disk-vid overflow-hidden">
-            {/* Background Video */}
-            <div className="flex items-center justify-center w-full h-full relative">
+            {/* Background Video - z-index: 1 */}
+            <div className="flex items-center justify-center w-full h-full relative z-[1]">
               <video
                 src={assets.video}
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-[380px] h-[380px] md:w-[630px] md:h-[630px] object-cover z-[1]"
+                className="w-[380px] h-[380px] md:w-[630px] md:h-[630px] object-cover"
               ></video>
-              <div
-                className="w-[380px] h-[380px] rounded-full md:w-[600px] md:h-[500px] absolute object-cover z-20"
-                onClick={handleToggleAudio}
-                ref={sectionRef}
-              ></div>
             </div>
 
-            {/* Header */}
-            <div className="absolute w-[105%] ml-[-7px] md:ml-0 sm:w-[105%] md:w-[100%] inset-0 flex flex-col justify-between z-40">
-              <Header
-                audioStarted={audioStarted}
-                setAudioStarted={setAudioStarted}
-                isMuted={isMuted}
-                setIsMuted={setIsMuted}
-                isHoveringBuffer={isHoveringBuffer}
-                setIsHoveringBuffer={setIsHoveringBuffer}
-              />
+            {/* Clickable overlay for audio toggle - z-index: 2 */}
+            <div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] rounded-full md:w-[600px] md:h-[500px] z-[2] cursor-pointer"
+              onClick={handleToggleAudio}
+              ref={sectionRef}
+            ></div>
+
+            {/* Header - z-index: 30 (highest, so links work) */}
+            <div className="absolute w-[105%] ml-[-7px] md:ml-0 sm:w-[105%] md:w-[100%] top-0 left-0 right-0 z-30 pointer-events-none">
+              <div className="pointer-events-auto">
+                <Header
+                  audioStarted={audioStarted}
+                  setAudioStarted={setAudioStarted}
+                  isMuted={isMuted}
+                  setIsMuted={setIsMuted}
+                  isHoveringBuffer={isHoveringBuffer}
+                  setIsHoveringBuffer={setIsHoveringBuffer}
+                />
+              </div>
             </div>
 
-            {/* Cursor Text */}
-            <div className="bg-black relative">
+            {/* Cursor Text - z-index: 20 */}
+            <div className="absolute inset-0 z-20 pointer-events-none">
               {!popup && (
                 <CursorText isMuted={isMuted} sectionRef={sectionRef} />
               )}
