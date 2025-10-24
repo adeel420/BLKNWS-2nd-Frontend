@@ -209,7 +209,7 @@ const Watch = () => {
       {/* <img src={assets.watch4} alt="BLKNWS Secondary" /> */}
 
       {/* Tour Section */}
-      <main className=" w-full mt-[-60px] bg-black text-white">
+      <main className=" w-full mt-[-90px] bg-black text-white">
         <div className="h-24 md:h-28 w-full lg:h-32" />
         <div className="w-full">
           <div className="" aria-hidden="true" />
@@ -226,12 +226,23 @@ const Watch = () => {
 
       {/* Final Section */}
       <div className="bg-black text-white flex flex-col items-center px-4 sm:px-8 md:px-12 lg:px-16 p-10 md:py-16">
-        <img
+        <h1
+          className="
+    text-2xl sm:text-2xl md:text-5xl lg:text-7xl xl:text-[50px]
+    flex flex-wrap items-center justify-center gap-4 font-bold sm:gap-6 md:gap-8 lg:gap-[30px]
+    text-center
+  "
+        >
+          <span>H O S T</span>
+          <span>A</span>
+          <span>S C R E E N I N G</span>
+        </h1>
+        {/* <img
           src={assets.watch5}
           alt="BLKNWS Secondary"
           className="h-[60px] sm:h-[90px] md:h-[100px] w-[220px] sm:w-[320px] md:w-[480px] lg:w-[560px] object-contain mb-6 sm:mb-8"
-        />
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-[600px]">
+        /> */}
+        <div className="flex flex-col mt-8 sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-[600px]">
           <button className="w-full sm:w-auto flex-1 border border-white bg-transparent text-white text-center px-8 sm:px-10 md:px-12 py-3 sm:py-3.5 md:py-4 rounded-md hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200">
             HOST VIA KINEMA
           </button>
