@@ -57,7 +57,12 @@ const RSVP = () => {
           </div>
 
           {/* Header */}
-          <div className="absolute inset-0 flex flex-col justify-between z-[3]">
+          <div
+            className="absolute inset-0 flex flex-col justify-between"
+            style={{
+              zIndex: "111111111111111111111111111111111111111111111111",
+            }}
+          >
             <Header />
           </div>
 

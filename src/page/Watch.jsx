@@ -88,7 +88,7 @@ const Watch = () => {
           {/* Play Button Overlay - z-index increased */}
           <button
             onClick={() => setIsPopupOpen(true)}
-            className="absolute cursor-pointer top-[95px] md:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-1 md:p-6 transition-all hover:scale-110 shadow-lg z-[2]"
+            className="absolute cursor-pointer top-[58%] md:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-1 md:p-6 transition-all hover:scale-110 shadow-lg z-[2]"
             aria-label="Play Video"
           >
             <Play className="w-5 h-5 md:w-12 md:h-12 text-black fill-black cursor-pointer" />

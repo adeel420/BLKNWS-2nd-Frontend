@@ -5,6 +5,7 @@ import CursorText from "../components/CursorText";
 import { useNavigate } from "react-router-dom";
 import Popup from "../components/Popup";
 import { initializeGlobalAudio, getGlobalAudio } from "../utils/audioContext";
+import { Play } from "lucide-react";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Home = () => {
   const [popup, setPopup] = useState(false);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Initialize global audio on mount
   useEffect(() => {
@@ -90,7 +92,7 @@ const Home = () => {
             </div>
 
             {/* Header */}
-            <div className="absolute w-[105%] ml-[-7px] md:ml-0 sm:w-[105%] md:w-[100%] inset-0 flex flex-col justify-between z-[3]">
+            <div className="absolute w-[105%] ml-[-7px] md:ml-0 sm:w-[105%] md:w-[100%] inset-0 flex flex-col justify-between z-40">
               <Header
                 audioStarted={audioStarted}
                 setAudioStarted={setAudioStarted}
@@ -139,46 +141,49 @@ const Home = () => {
           </p>
 
           <div className="relative w-full max-w-[800px] mt-8 aspect-video rounded-2xl overflow-hidden shadow-lg">
-            {!isPlaying && (
+            <div className="relative w-full h-full">
               <img
                 src={assets.thumbnail}
-                alt="Video thumbnail"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 mt-12 md:mt-0 w-full h-full object-contain md:object-cover object-top md:object-center bg-black"
               />
-            )}
 
-            <video
-              ref={videoRef}
-              src={assets.videoWatch}
-              controls
-              playsInline
-              className={`w-full h-full object-cover transition-opacity duration-700 ${
-                isPlaying ? "opacity-100" : "opacity-0"
-              }`}
-            />
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/40 z-[1]" />
 
-            {!isPlaying && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+              {/* Play Button Overlay - z-index increased */}
+              <button
+                onClick={() => setIsPopupOpen(true)}
+                className="absolute cursor-pointer top-[58%] md:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-1 md:p-6 transition-all hover:scale-110 shadow-lg z-[2]"
+                aria-label="Play Video"
+              >
+                <Play className="w-5 h-5 md:w-12 md:h-12 text-black fill-black cursor-pointer" />
+              </button>
+            </div>
+
+            {/* Video Popup */}
+            {isPopupOpen && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+                {/* Close button */}
                 <button
-                  onClick={() => {
-                    handlePlay();
-                    const audio = getGlobalAudio();
-                    if (audio) {
-                      audio.muted = true;
-                      setIsMuted(true);
-                    }
-                  }}
-                  className="text-white flex flex-col items-center gap-0 md:gap-2 font-semibold text-sm sm:text-5xl cursor-pointer"
+                  onClick={() => setIsPopupOpen(false)}
+                  className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10 cursor-pointer"
+                  aria-label="Close Video"
                 >
-                  <span>
-                    <img
-                      src={assets.play}
-                      className="h-[18px] mb-2 w-[18px] md:h-[40px] md:w-[40px]"
-                    />
-                  </span>
-                  <span>WATCH</span>
-                  <span>TEASER</span>
+                  &times;
                 </button>
+
+                {/* Video Container */}
+                <div className="relative w-full max-w-5xl aspect-video bg-black">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/bfSphlAyHLs?si=LoGD1ZYtFAc7XICT&autoplay=1"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
               </div>
             )}
           </div>

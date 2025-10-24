@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { MdVolumeOff, MdVolumeUp } from "react-icons/md";
+import { MdVolumeOff, MdVolumeUp, MdMenu, MdClose } from "react-icons/md";
 import SignupPopup from "./SignupPopup";
 import { getGlobalAudio } from "../utils/audioContext";
 
@@ -15,15 +15,14 @@ const Header = ({
   const [popup, setPopup] = useState(false);
   const token = localStorage.getItem("token");
   const [localHovering, setLocalHovering] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Local state for non-homepage
   const [localAudioStarted, setLocalAudioStarted] = useState(false);
   const [localIsMuted, setLocalIsMuted] = useState(false);
 
   const location = useLocation();
   const isHomepage = location.pathname === "/";
 
-  // Use passed props if on homepage, otherwise use local state
   const currentAudioStarted =
     isHomepage && audioStarted !== null ? audioStarted : localAudioStarted;
   const currentSetAudioStarted =
@@ -38,13 +37,17 @@ const Header = ({
   const setIsHovering =
     isHomepage && setIsHoveringBuffer ? setIsHoveringBuffer : setLocalHovering;
 
-  // Sync header with global audio on route change
   useEffect(() => {
     const audio = getGlobalAudio();
     if (audio) {
       currentSetAudioStarted(!audio.paused);
       currentSetIsMuted(audio.muted);
     }
+  }, [location.pathname]);
+
+  // ✅ Close menu when route changes
+  useEffect(() => {
+    setMenuOpen(false);
   }, [location.pathname]);
 
   const handleToggleAudio = () => {
@@ -81,15 +84,17 @@ const Header = ({
 
   return (
     <>
-      <header
-        className="w-full bg-transparent ml-[-8px] md:ml-0 text-white z-50 px-2 sm:px-2 py-4"
-        onClick={handleStartAudio}
-      >
-        <div className="max-w-7xl mx-auto flex flex-row items-center justify-center md:justify-between gap-5 sm:gap-6">
+      <header className="w-full bg-transparent ml-[-8px] md:ml-0 text-white z-50 px-2 sm:px-2 py-4 relative">
+        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between gap-5 sm:gap-6">
+          {/* Left Section: Audio + Title */}
           <div className="flex items-center gap-2 sm:gap-3 relative">
             <div
               className="relative cursor-pointer flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9"
-              onClick={handleToggleAudio}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleStartAudio();
+                handleToggleAudio();
+              }}
             >
               {currentIsMuted ? (
                 <MdVolumeOff className="text-white text-lg sm:text-xl md:text-2xl hover:text-gray-300 transition-colors" />
@@ -108,10 +113,11 @@ const Header = ({
             </div>
           </div>
 
+          {/* Desktop Nav */}
           <nav
             className="
-              flex 
-              justify-between mr-[-9px] items-center 
+              hidden md:flex 
+              justify-between items-center 
               gap-5 sm:gap-6 md:gap-8 
               text-[8px] sm:text-sm md:text-[16px] 
               font-bold
@@ -139,7 +145,51 @@ const Header = ({
               RSVP
             </Link>
           </nav>
+
+          {/* Mobile Hamburger Icon */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="focus:outline-none z-[10000]"
+            >
+              {menuOpen ? (
+                <MdClose className="text-2xl text-white" />
+              ) : (
+                <MdMenu className="text-2xl text-white" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {menuOpen && (
+          <div
+            className="
+              fixed top-[72px] left-0 right-0
+              bg-black/95 backdrop-blur-md 
+              md:hidden flex flex-col items-center 
+              py-6 space-y-5 z-[9999]
+              text-base font-semibold
+            "
+          >
+            {[
+              { label: "HOME", to: "/" },
+              { label: "WATCH", to: "/watch" },
+              { label: "COMMUNITY", to: token ? "/community" : "/signup" },
+              { label: "CREDITS", to: "/credits" },
+              { label: "RSVP", to: "/rsvp" },
+            ].map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="hover:text-gray-300 transition-colors w-full text-center py-2 relative z-[10000]"
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
 
         <div className="z-40">
           {popup && <SignupPopup onClose={() => setPopup(false)} />}
