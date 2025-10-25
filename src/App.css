@@ -526,6 +526,10 @@ body {
     margin-top: -15px !important;
   }
 }
-.option-center {
+.select {
+  text-align: center;
+  text-align-last: center; /* important for the selected option */
+}
+.option {
   text-align: center;
 }
