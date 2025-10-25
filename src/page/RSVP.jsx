@@ -28,7 +28,7 @@ const RSVP = () => {
           </div>
 
           {/* Header - Medium z-index */}
-          <div className="absolute inset-0 flex flex-col justify-between z-[50] pointer-events-none">
+          <div className="absolute inset-0 flex flex-col justify-between z-[99999] md:z-[50] pointer-events-none">
             <div className="pointer-events-auto">
               <Header />
             </div>
