@@ -280,7 +280,7 @@ const SignupPopup = ({ onClose }) => {
 
             {/* Desktop close button */}
             <button
-              className="absolute top-[5px] right-20 z-[50] cursor-pointer hidden md:block text-xl font-bold text-gray-700"
+              className="absolute top-[0px] right-14 z-[50] cursor-pointer hidden md:block text-xl font-bold text-gray-700"
               onClick={() => navigate("/")}
             >
               ×
@@ -288,7 +288,7 @@ const SignupPopup = ({ onClose }) => {
 
             {/* Mobile close button */}
             <button
-              className="absolute top-[-10px] right-12 z-[50] block md:hidden text-2xl font-bold text-gray-700"
+              className="absolute top-[-4px] right-10 z-[50] block md:hidden text-2xl font-bold text-gray-700"
               onClick={() => navigate("/")}
             >
               ×
